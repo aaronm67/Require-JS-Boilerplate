@@ -1,0 +1,14 @@
+{
+  "name": "require-js-prototype",
+  "version": "0.1.0",
+  "engines": {
+    "node": ">= 0.10.13"
+  },
+
+  "devDependencies": {
+    "grunt-cli": "~0.1.9",
+    "requirejs": "~2.1.10",
+    "grunt-contrib-requirejs": "~0.4.0",
+    "grunt-contrib-jshint": "~0.6.0"
+  }
+}

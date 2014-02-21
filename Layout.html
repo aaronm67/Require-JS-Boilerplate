@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%- RenderTitle %></title>
+    </head>
+    <body>
+        <section class="js-sidebar">
+            This is a module that's initialized on every page - javascript for this is in pages/global.js.
+            <button>Click this</button>
+            <p>
+                If you wanted to initialize some scripts in this as a partial, you'd do:
+
+                <script>
+                    require['site'], function(global) {
+                        require('modules/sidebar', function(module) {
+                            module.init();
+                        })
+                    });
+                </script>
+
+                In the partial
+            </p>
+        </section>
+
+        <section class="content">
+            <%- RenderContent() %>
+        </section>
+
+        <script src="/js/source/lib/require.js"></script>
+        
+        <% if (development) { %>
+            <script src="/js/source/site.js"></script>
+        <% } %>
+        <% if release { %>
+            <script src="/js/build/site.js"></script>
+        <% } %>
+
+        <script>
+            define('serverVars', function() {
+                return {
+                    baseUrl: '/'
+                };
+            });
+
+            require['site'], function(global) {
+                require('pages/global', function(global) {
+                    global.init();
+                })
+            });
+        </script>
+
+        <%- RenderScripts %>
+    </body>
+</html>

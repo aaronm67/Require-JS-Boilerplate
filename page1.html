@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Page 1</title>
+    </head>
+    <body>
+        <section class="js-sidebar">
+            This is a module that's initialized on every page - javascript for this is in pages/global.js.
+            <button>Click this</button>
+        </section>
+
+        <section class="content">
+            <a href="page2.html">Page 2</a>
+            <!-- section Content -->
+                <div class="js-another-view">
+                    VIew 1
+                </div>
+
+                <div class="js-another-view">
+                    View 2
+                </div>
+
+                <div class="js-another-view">
+                    VIew 3
+                </div>
+
+                <div class="js-another-view">
+                    View 4
+                </div>
+
+                <div class="js-another-view">
+                    View 5
+                </div>
+            <!-- endsection -->
+        </section>
+
+        <script src="/static/js/source/lib/require.js"></script>
+         <!-- if (development) -->
+            <script src="/static/js/source/site.js"></script>
+        <!-- end dev -->
+        <!-- if (release)
+            <script src="/static/js/build/site.js"></script>
+        <!-- end release -->
+
+        <script>
+            define('serverVars', function() {
+                return {
+                    baseUrl: '/'
+                };
+            });
+
+            require(['site'], function(global) {
+                require(['pages/global'], function(global) {
+                    global.init();
+                })
+            });
+        </script>
+
+        <!-- section Scripts -->
+            <script>
+                require(['site'], function(global) {
+                    require(['pages/page1'], function(page2) {
+                        page2.init();
+                    })
+                });
+            </script>
+        <!-- endsection -->
+    </body>
+</html>

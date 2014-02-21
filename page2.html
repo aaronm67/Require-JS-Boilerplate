@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Page 2</title>
+    </head>
+    <body>
+        <section class="js-sidebar">
+            This is a module that's initialized on every page - javascript for this is in pages/global.js.
+            <button>Click this</button>
+        </section>
+
+        <section class="content">
+            <!-- section Content -->
+                <div class='js-stuff'></div>
+            <!-- endsection -->
+        </section>
+
+        <script src="/static/js/source/lib/require.js"></script>
+         <!-- if (development) -->
+            <script src="/static/js/source/site.js"></script>
+        <!-- end dev -->
+        <!-- if (release)
+            <script src="/static/js/build/site.js"></script>
+        <!-- end release -->
+
+        <script>
+            define('serverVars', function() {
+                return {
+                    baseUrl: '/'
+                };
+            });
+
+            require(['site'], function(global) {
+                require(['pages/global'], function(global) {
+                    global.init();
+                })
+            });
+        </script>
+
+        <!-- section Scripts -->
+            <script>
+                require(['site'], function(global) {
+                    require(['pages/page2'], function(page2) {
+                        page2.init();
+                    })
+                });
+            </script>
+        <!-- endsection -->
+    </body>
+</html>
